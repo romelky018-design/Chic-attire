@@ -2,191 +2,646 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Chic Attire · jewelry for his & her</title>
+    <!-- Font Awesome 5 -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..600&display=swap" rel="stylesheet">
     <style>
+        /* === BASE & RESET (same as original, only responsive tweaks added) === */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            background: #fcfaf7;
+            color: #1e1e1e;
+            line-height: 1.5;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        /* header & nav — with mobile first adjustments */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #e3d9d0;
+        }
+        .logo h1 {
+            font-size: clamp(1.8rem, 5vw, 2rem);
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            color: #2b2b2b;
+        }
+        .logo span {
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: #b29274;
+            display: block;
+        }
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.2rem;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #2b2b2b;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 4px;
+            transition: 0.2s;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .nav-links a:hover {
+            border-bottom-color: #b29274;
+            color: #b29274;
+        }
+        /* hero */
+        .hero {
+            background: linear-gradient(105deg, #f3ede8 0%, #fff9f3 100%);
+            border-radius: 32px;
+            margin: 2rem 0;
+            padding: 2.5rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+        .hero-text h2 {
+            font-size: clamp(2rem, 6vw, 2.8rem);
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        .hero-text .gold { color: #b29274; }
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #4f4a45;
+            margin: 1rem 0 1.5rem;
+        }
+        .btn {
+            background: #2b2b2b;
+            color: white;
+            border: none;
+            padding: 0.9rem 2.2rem;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .btn i { margin-right: 8px; }
+        .btn:hover { background: #b29274; }
+        .hero-image i { font-size: 10rem; color: #dccfc2; }
+        /* section titles */
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2rem);
+            font-weight: 600;
+            margin: 2rem 0 1.5rem;
+        }
+        .section-title i { color: #b29274; margin-right: 12px; }
+        
+        /* card grid for catalog preview (original 2 cards) */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .card {
+            background: white;
+            border-radius: 28px;
+            padding: 2rem;
+            box-shadow: 0 15px 30px -12px rgba(0,0,0,0.1);
+            border: 1px solid #f1ebe5;
+            transition: 0.2s;
+        }
+        .card:hover { transform: translateY(-6px); }
+        .icon-ring { font-size: 3.5rem; color: #cbb59b; margin-bottom: 0.5rem; }
+        .price { font-size: 2rem; font-weight: 600; }
+        .price small { font-size: 1rem; font-weight: 300; color: #8b7a6b; }
+        .badge {
+            background: #efeae3;
+            border-radius: 40px;
+            padding: 0.5rem 1.2rem;
+            font-weight: 500;
+            color: #5e4e3e;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #2b2b2b;
+            color: #2b2b2b;
+            padding: 0.6rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+        .btn-outline i { margin-left: 8px; }
+        .btn-outline:hover { background: #2b2b2b; color: white; }
+
+        /* ORDER SECTION (unchanged from original) */
+        .order-section {
+            background: #ffffff;
+            border-radius: 40px;
+            padding: 2.5rem 2rem;
+            margin: 4rem 0;
+            border: 2px solid #e3d9d0;
+        }
+        .order-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .info-panel {
+            background: #f9f5f1;
+            border-radius: 28px;
+            padding: 2rem;
+        }
+        .bank-detail {
+            background: white;
+            border-radius: 16px;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-left: 6px solid #b29274;
+            font-size: 0.95rem;
+            word-break: break-word;
+        }
+        .order-form {
+            background: #f9f5f1;
+            border-radius: 28px;
+            padding: 2rem;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border: 2px solid #e0d6cc;
+            border-radius: 30px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+        }
+        .double-input {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .order-time-note {
+            background: #e3d9d0;
+            border-radius: 30px;
+            padding: 1rem;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+        .submit-btn {
+            background: #2b2b2b;
+            color: white;
+            width: 100%;
+            padding: 1.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+        }
+        .submit-btn:hover { background: #b29274; }
+
+        /* FOOTER */
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 2px solid #e3d9d0;
+            margin-top: 2rem;
+        }
+
+        /* ===== NEW: MODAL / POP-UP CATALOG STYLES ===== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 1rem;
+        }
+        .modal-container {
+            background: #fffaf5;
+            border-radius: 48px;
+            max-width: 1200px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            border: 2px solid #e3d9d0;
+            position: relative;
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .modal-header h2 {
+            font-size: 2rem;
+            font-weight: 600;
+        }
+        .modal-header h2 i { color: #b29274; margin-right: 12px; }
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 2.5rem;
+            cursor: pointer;
+            color: #8b7a6b;
+            line-height: 1;
+            padding: 0 1rem;
+        }
+        .close-modal:hover { color: #2b2b2b; }
+        /* product grid inside modal — exactly 10 items, responsive */
+        .modal-product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1.8rem;
+            margin-top: 1rem;
+        }
+        .product-card {
+            background: white;
+            border-radius: 28px;
+            padding: 1.5rem 1.2rem 1.5rem;
+            border: 1px solid #ede3da;
+            transition: 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover { box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .product-img {
+            font-size: 4rem;
+            color: #cbb59b;
+            background: #f9f1ea;
+            width: 100%;
+            aspect-ratio: 1/1;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            border-radius: 30px;
+            margin-bottom: 1rem;
         }
-
-        .login-container {
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            width: 100%;
-            max-width: 400px;
+        .product-img i { font-size: 3.2rem; }
+        .product-title {
+            font-weight: 600;
+            font-size: 1.3rem;
+            margin: 0.5rem 0 0.2rem;
         }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #333;
+        .product-detail {
+            color: #6a5e54;
+            font-size: 0.9rem;
+            margin: 0.3rem 0;
         }
-
-        .input-group {
-            margin-bottom: 20px;
+        .product-price {
+            font-weight: 700;
+            font-size: 1.4rem;
+            margin: 0.5rem 0 0.8rem;
         }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            color: #555;
-            font-weight: bold;
-        }
-
-        input {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .login-btn {
-            width: 100%;
-            padding: 12px;
-            background: #667eea;
-            color: white;
+        .product-price small { font-weight: 300; font-size: 0.9rem; color: #8b7a6b; }
+        .add-to-cart-btn {
+            background: #efeae3;
             border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: bold;
+            border-radius: 40px;
+            padding: 0.8rem 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: auto;
+            transition: 0.2s;
+            color: #2b2b2b;
+            border: 2px solid transparent;
         }
-
-        .login-btn:hover {
-            background: #5a6fd8;
+        .add-to-cart-btn:hover {
+            background: #b29274;
+            color: white;
         }
-
-        .dashboard {
+        .cart-message {
+            background: #2b2b2b;
+            color: white;
+            padding: 0.6rem;
+            border-radius: 40px;
             text-align: center;
-            color: white;
+            margin: 1rem 0 0;
+            font-size: 0.9rem;
         }
-
-        .dashboard h1 {
+        /* cart counter pill */
+        .cart-pill {
+            background: #b29274;
             color: white;
-            font-size: 2.5em;
-            margin-bottom: 20px;
+            border-radius: 40px;
+            padding: 0.3rem 1rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-left: 1rem;
         }
-
-        .logout-btn {
-            padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: 1px solid white;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-
-        .error-message {
-            color: red;
-            text-align: center;
-            margin-top: 10px;
-            display: none;
+        /* Responsive touch */
+        @media (max-width: 600px) {
+            .container { padding: 0 1.2rem; }
+            .navbar { flex-direction: column; align-items: start; gap: 0.5rem; }
+            .hero-image i { font-size: 7rem; }
+            .double-input { grid-template-columns: 1fr; }
+            .modal-container { padding: 1.5rem 1rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Login Page -->
-    <div class="login-container" id="loginPage">
-        <h1>BIWI Secure Access 🔒</h1>
-        <form id="loginForm">
-            <div class="input-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" placeholder="Enter username" required>
+    <div class="container">
+        <!-- header (same style, but nav links updated with clickable triggers) -->
+        <nav class="navbar">
+            <div class="logo">
+                <h1>CHIC ATTIRE <span>jewelry for his & her</span></h1>
             </div>
-            <div class="input-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" placeholder="Enter password" required>
+            <div class="nav-links">
+                <!-- these links now open modals (pop-ups) -->
+                <a href="#" id="openWomenModal"><i class="fas fa-female"></i> WOMEN</a>
+                <a href="#" id="openMenModal"><i class="fas fa-male"></i> MEN</a>
+                <a href="#" id="openCollectionModal"><i class="fas fa-star"></i> COLLECTION</a>
+                <a href="#order"><i class="fas fa-shopping-bag"></i> ORDER</a>
             </div>
-            <button type="submit" class="login-btn">ENTER</button>
-            <div class="error-message" id="errorMessage">Invalid username or password!</div>
-        </form>
+        </nav>
+
+        <!-- hero unchanged -->
+        <div class="hero">
+            <div class="hero-text">
+                <h2>timeless <span class="gold">elegance</span><br>for every story</h2>
+                <p>gold, silver & stainless steel — crafted for men and women.</p>
+                <a href="#order" class="btn"><i class="fas fa-gem"></i> order your piece</a>
+            </div>
+            <div class="hero-image">
+                <i class="fas fa-ring"></i>
+            </div>
+        </div>
+
+        <!-- original two cards preview (kept exactly as before) -->
+        <div>
+            <div class="section-title"><i class="fas fa-venus-mars"></i> his & hers signature</div>
+            <div class="grid-2">
+                <div class="card">
+                    <i class="fas fa-gem icon-ring"></i>
+                    <h3>Étoile necklace</h3>
+                    <p>18k gold vermeil, adjustable chain · delicate for her</p>
+                    <div class="card-flex" style="display:flex; justify-content:space-between; align-items:center;">
+                        <span class="price">$189 <small>USD</small></span>
+                        <span class="badge"><i class="far fa-star"></i> woman</span>
+                    </div>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="#" class="btn-outline">view detail <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="card">
+                    <i class="fas fa-ring icon-ring"></i> 
+                    <h3>Axios cuff</h3>
+                    <p>brushed stainless steel & leather · bold for him</p>
+                    <div class="card-flex" style="display:flex; justify-content:space-between; align-items:center;">
+                        <span class="price">$225 <small>USD</small></span>
+                        <span class="badge"><i class="fas fa-glasses"></i> man</span>
+                    </div>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="#" class="btn-outline">view detail <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ORDER SECTION (original, untouched) -->
+        <section id="order" class="order-section">
+            <div style="margin-bottom: 1.5rem;">
+                <span class="section-title" style="margin-top: 0;"><i class="fas fa-shopping-cart"></i> special order</span>
+                <p style="font-size: 1.2rem;">fill the form — we’ll confirm by email within 2 hours.</p>
+            </div>
+            <div class="order-grid">
+                <div class="info-panel">
+                    <h4><i class="fas fa-clock" style="margin-right: 10px;"></i> order & payment</h4>
+                    <div class="policy-item" style="display:flex; gap:1rem; margin:1.5rem 0;">
+                        <i class="fas fa-truck" style="font-size:2rem; color:#b29274;"></i>
+                        <div><strong>delivery time</strong><br>Port-au-Prince / Pétion-Ville : 24h.<br>Other regions: 2-3 business days.</div>
+                    </div>
+                    <div class="payment-option-box" style="background:#efe6dd; border-radius:20px; padding:1.5rem;">
+                        <p><i class="fas fa-university"></i> haitian bank details</p>
+                        <div class="bank-detail"><strong>BNC</strong> 00 1122 445566 78<br>CHIC ATTIRE S.A.</div>
+                        <div class="bank-detail"><strong>MonCash</strong> +509 28 00 0000<br>@chicattire</div>
+                        <div class="bank-detail"><strong>UNIBANK</strong> 005 789123 45</div>
+                    </div>
+                </div>
+                <div class="order-form">
+                    <form>
+                        <div class="form-row"><label>full name *</label><input type="text" placeholder="e.g. Marie Jean"></div>
+                        <div class="double-input">
+                            <input type="email" placeholder="email">
+                            <input type="tel" placeholder="+509 28 00 0000">
+                        </div>
+                        <div class="form-row"><label>piece you'd like</label>
+                            <select><option>Étoile necklace (woman)</option><option>Axios cuff (man)</option></select>
+                        </div>
+                        <div class="double-input">
+                            <input type="date" value="2025-04-10"><input type="time" value="13:00">
+                        </div>
+                        <div class="order-time-note"><i class="fas fa-hourglass-half"></i> order time: ready for pickup/delivery on selected date</div>
+                        <div class="form-row"><label>payment method (Haiti)</label>
+                            <select><option>BNC transfer</option><option>UNIBANK</option><option>MonCash</option></select>
+                        </div>
+                        <button type="submit" class="submit-btn"><i class="fas fa-check-circle"></i> request order</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- footer unchanged -->
+        <footer class="footer">
+            <p>CHIC ATTIRE · 48 Rue Métellus, Pétion-Ville, Haïti  <i class="fas fa-phone-alt"></i> +509 28 00 000</p>
+            <p style="margin-top: 0.8rem;"><i class="fab fa-instagram"></i> <i class="fab fa-facebook"></i> <i class="fab fa-whatsapp"></i> — BNC, UNIBANK, MonCash</p>
+            <p>© chic attire</p>
+        </footer>
     </div>
 
-    <!-- Dashboard Page (Hidden by default) -->
-    <div class="dashboard" id="dashboardPage" style="display: none;">
-        <h1>Welcome to Dashboard! 🎉</h1>
-        <p>You have successfully logged in.</p>
-        <p><strong>This is your blank page ready for content.</strong></p>
-        <button class="logout-btn" onclick="logout()">LOGOUT</button>
+    <!-- ========== MODALS (POP-UPS) ========== -->
+    <!-- WOMEN MODAL (10 items) -->
+    <div id="womenModal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2><i class="fas fa-female"></i> women's jewelry (10)</h2>
+                <button class="close-modal" id="closeWomenModal">&times;</button>
+            </div>
+            <div class="modal-product-grid" id="womenGrid"></div>
+            <div id="womenCartMsg" class="cart-message" style="display:none;">✓ added to cart (view cart summary below)</div>
+        </div>
+    </div>
+    <!-- MEN MODAL (10 items) -->
+    <div id="menModal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2><i class="fas fa-male"></i> men's jewelry (10)</h2>
+                <button class="close-modal" id="closeMenModal">&times;</button>
+            </div>
+            <div class="modal-product-grid" id="menGrid"></div>
+            <div id="menCartMsg" class="cart-message" style="display:none;">✓ added to cart</div>
+        </div>
+    </div>
+    <!-- COLLECTION MODAL (10 items: 3 gold, 3 silver, 4 stainless to make 10) -->
+    <div id="collectionModal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2><i class="fas fa-star"></i> collection (gold, silver, stainless)</h2>
+                <button class="close-modal" id="closeCollectionModal">&times;</button>
+            </div>
+            <div class="modal-product-grid" id="collectionGrid"></div>
+            <div id="collectionCartMsg" class="cart-message" style="display:none;">✓ added to cart</div>
+        </div>
     </div>
 
-    <!-- ... all previous HTML and CSS stays the same ... -->
+    <!-- Simple cart feedback (pill) & array to store selected items (client side) -->
+    <div style="position: fixed; bottom: 20px; right: 20px; background: #2b2b2b; color: white; border-radius: 60px; padding: 0.8rem 1.8rem; box-shadow: 0 8px 20px rgba(0,0,0,0.2); z-index: 999; font-weight: 500; display: flex; align-items: center; gap: 8px;" class="cart-pill-global">
+        <i class="fas fa-shopping-cart"></i> <span id="cartCount">0</span> items · <span id="cartTotal">$0</span>
+    </div>
 
-<script>
-    // Allowed users
-    const allowedUsers = [
-        { username: "admin", password: "admin123" },
-        { username: "guest", password: "guest123" }
-    ];
+    <script>
+        (function() {
+            // ---------- DATA FOR 10 WOMEN ITEMS (with mini pic via icon + details) ----------
+            const womenItems = [
+                { name: "Étoile necklace", detail: "18k gold vermeil, adjustable 16-18", price: 189, icon: "fa-gem" },
+                { name: "Lumina earrings", detail: "Pearl & sterling silver, hypoallergenic", price: 145, icon: "fa-ear-deaf" },
+                { name: "Sol ring", detail: "Rose gold with cubic zirconia", price: 99, icon: "fa-ring" },
+                { name: "Muse bracelet", detail: "Gold chain with charms", price: 130, icon: "fa-hand-sparkles" },
+                { name: "Aura pendant", detail: "Silver with moonstone", price: 175, icon: "fa-moon" },
+                { name: "Rêve cuff", detail: "Satin finish sterling silver", price: 210, icon: "fa-clock" },
+                { name: "Fleur brooch", detail: "Enamel & brass, floral design", price: 85, icon: "fa-feather" },
+                { name: "Nacre ring", detail: "Mother-of-pearl, 14k gold plate", price: 115, icon: "fa-circle" },
+                { name: "Perle earrings", detail: "Freshwater pearl drop", price: 160, icon: "fa-water" },
+                { name: "Diane choker", detail: "Velvet & gold chain, adjustable", price: 120, icon: "fa-ribbon" }
+            ];
+            // ---------- 10 MEN ITEMS ----------
+            const menItems = [
+                { name: "Axios cuff", detail: "Brushed steel & leather", price: 225, icon: "fa-clock" },
+                { name: "Titan chain", detail: "Stainless steel, 8mm wide", price: 199, icon: "fa-link" },
+                { name: "Nomad ring", detail: "Black tungsten, matte finish", price: 89, icon: "fa-ring" },
+                { name: "Voyager bracelet", detail: "Leather braid with magnetic clasp", price: 110, icon: "fa-anchor" },
+                { name: "Steel dog tag", detail: "Engravable stainless steel", price: 75, icon: "fa-tag" },
+                { name: "Onyx pendant", detail: "Black onyx, silver chain", price: 165, icon: "fa-gem" },
+                { name: "Rivet earring", detail: "Single stud, black spinel", price: 69, icon: "fa-bolt" },
+                { name: "Commander ring", detail: "Sterling silver with carbon fiber", price: 190, icon: "fa-shield-alt" },
+                { name: "Coast cuff", detail: "Hammered silver, 1.5cm", price: 155, icon: "fa-water" },
+                { name: "Aviator sunglasses chain", detail: "Metal beads, matte black", price: 58, icon: "fa-glasses" }
+            ];
+            // ---------- COLLECTION: 3 gold, 3 silver, 4 stainless (total 10) ----------
+            const collectionItems = [
+                { name: "Gold bar necklace", detail: "14k solid gold, minimal", price: 450, icon: "fa-gem", metal: "gold" },
+                { name: "Gold signet ring", detail: "18k gold, monogram style", price: 390, icon: "fa-crown", metal: "gold" },
+                { name: "Gold hoop earrings", detail: "22k gold plate, large", price: 210, icon: "fa-circle", metal: "gold" },
+                { name: "Silver mesh bracelet", detail: "925 sterling, flexible", price: 140, icon: "fa-hand-sparkles", metal: "silver" },
+                { name: "Silver pendant cross", detail: "oxidized silver, antique", price: 115, icon: "fa-cross", metal: "silver" },
+                { name: "Silver stud set", detail: "3mm brilliant cut, set of 4", price: 98, icon: "fa-star", metal: "silver" },
+                { name: "Stainless chrono watch", detail: "Japanese movement, black dial", price: 320, icon: "fa-clock", metal: "stainless" },
+                { name: "Stainless ID bracelet", detail: "brushed links, engravable", price: 185, icon: "fa-id-card", metal: "stainless" },
+                { name: "Stainless money clip", detail: "slim with carbon inlay", price: 79, icon: "fa-wallet", metal: "stainless" },
+                { name: "Stainsteel cufflinks", detail: "modern design, gift box", price: 135, icon: "fa-gem", metal: "stainless" }
+            ];
 
-    // Handle form submission
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
-        e.preventDefault();
+            // ---------- render products inside a given grid, attach add-to-cart logic ----------
+            function renderGrid(gridId, itemsArray, modalName) {
+                const grid = document.getElementById(gridId);
+                if (!grid) return;
+                grid.innerHTML = '';
+                itemsArray.forEach((item, index) => {
+                    const card = document.createElement('div');
+                    card.className = 'product-card';
+                    card.innerHTML = `
+                        <div class="product-img"><i class="fas ${item.icon}"></i></div>
+                        <div class="product-title">${item.name}</div>
+                        <div class="product-detail">${item.detail}</div>
+                        <div class="product-price">$${item.price} <small>USD</small></div>
+                        <button class="add-to-cart-btn" data-modal="${modalName}" data-item='${JSON.stringify(item).replace(/'/g, "&apos;")}'><i class="fas fa-cart-plus"></i> add to cart</button>
+                    `;
+                    grid.appendChild(card);
+                });
+            }
 
-        const username = document.getElementById('username').value.trim();
-        const password = document.getElementById('password').value.trim();
-        const errorMessage = document.getElementById('errorMessage');
-        const button = document.querySelector('.login-btn');
+            // render all modals
+            renderGrid('womenGrid', womenItems, 'women');
+            renderGrid('menGrid', menItems, 'men');
+            renderGrid('collectionGrid', collectionItems, 'collection');
 
-        if (username === '' || password === '') {
-            errorMessage.textContent = 'Please fill in both fields!';
-            errorMessage.style.display = 'block';
-            return;
-        }
+            // ---------- CART array ----------
+            let cart = [];
 
-        const validUser = allowedUsers.find(user =>
-            user.username === username && user.password === password
-        );
+            function updateCartUI() {
+                const count = cart.reduce((acc, i) => acc + i.qty, 0);
+                const total = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
+                document.getElementById('cartCount').innerText = count;
+                document.getElementById('cartTotal').innerText = '$' + total;
+                // show small msg per modal (already handled individually)
+            }
 
-        if (!validUser) {
-            errorMessage.textContent = 'Invalid username or password!';
-            errorMessage.style.display = 'block';
-            return;
-        }
+            // add to cart event listener (delegation)
+            document.querySelectorAll('.modal-product-grid').forEach(grid => {
+                grid.addEventListener('click', (e) => {
+                    const btn = e.target.closest('.add-to-cart-btn');
+                    if (!btn) return;
+                    const itemStr = btn.getAttribute('data-item');
+                    try {
+                        const item = JSON.parse(itemStr.replace(/&apos;/g, "'"));
+                        // add to cart (increase qty if exists)
+                        const existing = cart.find(i => i.name === item.name && i.price === item.price);
+                        if (existing) existing.qty += 1;
+                        else cart.push({ ...item, qty: 1 });
+                        updateCartUI();
 
-        errorMessage.style.display = 'none';
+                        // flash message inside corresponding modal
+                        const modalName = btn.getAttribute('data-modal'); // women, men, collection
+                        const msgDiv = document.getElementById(modalName + 'CartMsg');
+                        if (msgDiv) {
+                            msgDiv.style.display = 'block';
+                            msgDiv.innerText = '✓ ' + item.name + ' added to cart';
+                            setTimeout(() => { msgDiv.style.display = 'none'; }, 2000);
+                        }
+                    } catch (err) { console.warn(err); }
+                });
+            });
 
-        button.textContent = 'LOGGING IN...';
-        button.style.backgroundColor = '#999';
+            // ---------- MODAL open/close logic ----------
+            const womenModal = document.getElementById('womenModal');
+            const menModal = document.getElementById('menModal');
+            const collectionModal = document.getElementById('collectionModal');
 
-        // ✅ Redirect to biwi.html after 2 seconds
-        setTimeout(function() {
-            window.location.href = 'biwi.html';
-        }, 2000);
-    });
+            document.getElementById('openWomenModal').addEventListener('click', (e) => { e.preventDefault(); womenModal.style.display = 'flex'; });
+            document.getElementById('openMenModal').addEventListener('click', (e) => { e.preventDefault(); menModal.style.display = 'flex'; });
+            document.getElementById('openCollectionModal').addEventListener('click', (e) => { e.preventDefault(); collectionModal.style.display = 'flex'; });
 
-    // Hide error message on input focus
-    const inputs = document.querySelectorAll('input');
-    inputs.forEach(input => {
-        input.addEventListener('focus', function () {
-            document.getElementById('errorMessage').style.display = 'none';
-        });
-    });
-</script>
+            document.getElementById('closeWomenModal').addEventListener('click', () => { womenModal.style.display = 'none'; });
+            document.getElementById('closeMenModal').addEventListener('click', () => { menModal.style.display = 'none'; });
+            document.getElementById('closeCollectionModal').addEventListener('click', () => { collectionModal.style.display = 'none'; });
 
+            window.addEventListener('click', (e) => {
+                if (e.target === womenModal) womenModal.style.display = 'none';
+                if (e.target === menModal) menModal.style.display = 'none';
+                if (e.target === collectionModal) collectionModal.style.display = 'none';
+            });
+
+            // set min date for order form
+            const today = new Date().toISOString().split('T')[0];
+            const dateInput = document.querySelector('input[type="date"]');
+            if (dateInput) dateInput.setAttribute('min', today);
+        })();
+    </script>
 </body>
 </html>
-
-
